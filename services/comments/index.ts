@@ -2,7 +2,6 @@ import express from "express";
 import bodyParser from "body-parser";
 import { randomBytes } from "crypto";
 import cors from "cors";
-import axios from "axios";
 
 import Post from './models/comment_model';
 import PostComment from "./models/comment_model";
@@ -29,15 +28,6 @@ app.post("/posts/:id/comments", async (req, res) => {
   comments.push(comment);
 
   commentsByPostId[req.params.id] = comments;
-
-  await axios.post("http://localhost:4005/events", {
-    type: "CommentCreated",
-    data: {
-      id: commentId,
-      content: comment.content,
-      postId: req.params.id,
-    },
-  }).catch((err) => {});
 
   res.status(201).send(comments);
 });

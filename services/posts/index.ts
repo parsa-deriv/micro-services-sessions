@@ -2,7 +2,6 @@ import express from 'express';
 import bodyParser from "body-parser";
 import { randomBytes } from "crypto";
 import cors from "cors";
-import axios from "axios";
 
 import Post from './models/post_model';
 
@@ -22,14 +21,6 @@ app.post("/posts", async (req, res) => {
   post.id = id;
 
   posts.push(post);
-
-  await axios.post("http://localhost:4005/events", {
-    type: "PostCreated",
-    data: {
-      id,
-      title: post.title,
-    },
-  }).catch((err) => {});
 
   res.status(201).send(post);
 });
