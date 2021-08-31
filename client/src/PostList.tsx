@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CommentCreate from "./CommentCreate";
 import CommentList from "./CommentList";
+import { PostModel } from "./models/models";
 
 
 const PostList = () => {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<PostModel[]>([]);
 
   const fetchPosts = async () => {
     const res = await axios.get("http://localhost:4000/posts");

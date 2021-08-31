@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { CommentsListArguments, PostComment } from "./models/models";
 
-const CommentList = ({ postId }) => {
-  const [comments, setComments] = useState([]);
+const CommentList = ({ postId }: CommentsListArguments) => {
+  const [comments, setComments] = useState<PostComment[]>([]);
 
   const fetchData = async () => {
     const res = await axios.get(
