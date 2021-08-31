@@ -4,7 +4,6 @@ import { randomBytes } from "crypto";
 import cors from "cors";
 import axios from "axios";
 
-import Post from './models/comment_model';
 import PostComment from "./models/comment_model";
 
 type Dict = { [key: string]: PostComment[] };
@@ -30,24 +29,23 @@ app.post("/posts/:id/comments", async (req, res) => {
 
   commentsByPostId[req.params.id] = comments;
 
-  await axios.post("http://localhost:4005/events", {
+  console.log(`Comment created. ID: ${comment.id}, content: ${comment.content}`);
+
+  await axios.post("http://localhost:4005/event", {
     type: "CommentCreated",
     data: {
-      id: commentId,
-      content: comment.content,
+      ...comment,
       postId: req.params.id,
     },
-  }).catch((err) => {});
+  }).catch((err) => console.log(err));
 
   res.status(201).send(comments);
 });
 
-app.post("/events", (req, res) => {
-  console.log("Event Received", req.body.type);
+app.post("/event", (req, res) => {
+  console.log("Received Event", req.body.type);
 
   res.send({});
 });
 
-app.listen(4001, () => {
-  console.log("Listening on 4001");
-});
+app.listen(4001, () => console.log("Comments service is running on port 4001..."));

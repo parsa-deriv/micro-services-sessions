@@ -23,23 +23,20 @@ app.post("/posts", async (req, res) => {
 
   posts.push(post);
 
-  await axios.post("http://localhost:4005/events", {
+  console.log(`Post created. ID: ${post.id}, title: ${post.title}`);
+
+  await axios.post("http://localhost:4005/event", {
     type: "PostCreated",
-    data: {
-      id,
-      title: post.title,
-    },
-  }).catch((err) => {});
+    data: post,
+  }).catch((err) => console.log(err));
 
   res.status(201).send(post);
 });
 
-app.post("/events", (req, res) => {
+app.post("/event", (req, res) => {
   console.log("Received Event", req.body.type);
 
   res.send({});
 });
 
-app.listen(4000, () => {
-  console.log("Listening on 4000");
-});
+app.listen(4000, () => console.log("Posts service is running on port 4000..."));
