@@ -1,5 +1,4 @@
 import express from 'express';
-import bodyParser from "body-parser";
 import { randomBytes } from "crypto";
 import cors from "cors";
 
@@ -16,7 +15,7 @@ app.get("/posts", (req, res) => {
 });
 
 app.post("/posts", async (req, res) => {
-  const id = randomBytes(4).toString("hex");
+  const id: string = randomBytes(4).toString("hex");
   const post: Post = req.body;
   post.id = id;
 

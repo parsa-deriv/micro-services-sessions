@@ -1,9 +1,7 @@
 import express from "express";
-import bodyParser from "body-parser";
 import { randomBytes } from "crypto";
 import cors from "cors";
 
-import Post from './models/comment_model';
 import PostComment from "./models/comment_model";
 
 type Dict = { [key: string]: PostComment[] };
