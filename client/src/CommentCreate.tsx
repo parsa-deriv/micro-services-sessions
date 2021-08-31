@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
+import {CommentCreateArguments} from './models/models';
 
-const CommentCreate = ({ postId }) => {
+const CommentCreate = ({ postId }: CommentCreateArguments) => {
   const [content, setContent] = useState("");
 
-  const onSubmit = async (event) => {
+  const onSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     await axios.post(`http://localhost:4001/posts/${postId}/comments`, {

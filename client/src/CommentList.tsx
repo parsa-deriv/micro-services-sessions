@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import {CommentsListArguments} from './models/models';
 
-const CommentList = ({ postId, comments }) => {
+const CommentList = ({ comments }: CommentsListArguments)  => {
 
   const renderedComments = comments.map((comment) => {
     return <li key={comment.id}>{comment.content}</li>;

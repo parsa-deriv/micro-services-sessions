@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import CommentCreate from "./CommentCreate";
 import CommentList from "./CommentList";
+import {PostModel } from "./models/models";
 
 
 const PostList = () => {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<PostModel[]>([]);
 
   const fetchPosts = async () => {
     const res = await axios.get("http://localhost:4002/posts");
@@ -26,7 +27,7 @@ const PostList = () => {
       >
         <div className="card-body">
           <h3>{post.title}</h3>
-          <CommentList postId={post.id} comments={post.comments} />
+          <CommentList comments={post.comments} />
           <CommentCreate postId={post.id} />
         </div>
       </div>
