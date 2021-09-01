@@ -1,8 +1,8 @@
-import express from "express";
-import { randomBytes } from "crypto";
-import cors from "cors";
+import * as express from 'express';
+import { randomBytes } from 'crypto';
+import * as cors from 'cors';
 
-import PostComment from "./models/comment_model";
+import PostComment from './models/comment_model';
 
 type Dict = { [key: string]: PostComment[] };
 
@@ -12,12 +12,12 @@ app.use(cors());
 
 const commentsByPostId: Dict = {};
 
-app.get("/posts/:id/comments", (req, res) => {
+app.get('/posts/:id/comments', (req, res) => {
   res.send(commentsByPostId[req.params.id] || []);
 });
 
-app.post("/posts/:id/comments", async (req, res) => {
-  const commentId = randomBytes(4).toString("hex");
+app.post('/posts/:id/comments', async (req, res) => {
+  const commentId = randomBytes(4).toString('hex');
   const comment: PostComment = req.body;
   comment.id = commentId;
 
@@ -30,12 +30,12 @@ app.post("/posts/:id/comments", async (req, res) => {
   res.status(201).send(comments);
 });
 
-app.post("/events", (req, res) => {
-  console.log("Event Received", req.body.type);
+app.post('/events', (req, res) => {
+  console.log('Event Received', req.body.type);
 
   res.send({});
 });
 
 app.listen(4001, () => {
-  console.log("Listening on 4001");
+  console.log('Listening on 4001');
 });

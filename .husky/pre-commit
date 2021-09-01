@@ -1,0 +1,8 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Check code formatting
+echo '------------------------------------------------------'
+echo '|                    Lint Staging                    |'
+echo '------------------------------------------------------'
+npx lint-staged

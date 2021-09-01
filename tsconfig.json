@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.build.json",
+
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@derivservices/*": ["packages/*/src"]
+    }
+  },
+  "typedocOptions": {
+    "entryPoints": ["packages"],
+    "out": "docs"
+  }
+}

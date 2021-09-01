@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { CommentCreateArguments } from "./models/models";
+import React, { useState } from 'react';
+import axios from 'axios';
+import { CommentCreateArguments } from './models/models';
 
 const CommentCreate = ({ postId }: CommentCreateArguments) => {
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState('');
 
   const onSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -12,7 +12,7 @@ const CommentCreate = ({ postId }: CommentCreateArguments) => {
       content,
     });
 
-    setContent("");
+    setContent('');
   };
 
   return (
