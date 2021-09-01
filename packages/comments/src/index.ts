@@ -1,7 +1,6 @@
-import express from "express";
-import bodyParser from "body-parser";
+import * as express from "express";
 import { randomBytes } from "crypto";
-import cors from "cors";
+import * as cors from "cors";
 import axios from "axios";
 
 import PostComment from "./models/comment_model";

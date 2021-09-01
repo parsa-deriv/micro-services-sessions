@@ -1,8 +1,7 @@
-import express from 'express';
-import cors from "cors";
-import axios from "axios";
+import * as express from 'express';
+import * as cors from "cors";
 
-import { Dict, EventModel } from './models/event_model';
+import { EventModel } from './models/event_model';
 import {PostModel} from './models/post_model';
 
 const app = express();
@@ -29,7 +28,7 @@ function eventHandler(event: EventModel): void {
     }
 }
 
-app.get('/posts', (req, res) => {
+app.get('/posts', (_, res) => {
     res.send(posts);
 });
 

@@ -1,7 +1,6 @@
-import express from 'express';
-import bodyParser from "body-parser";
+import * as express from 'express';
 import { randomBytes } from "crypto";
-import cors from "cors";
+import * as cors from "cors";
 import axios from "axios";
 
 import Post from './models/post_model';
@@ -12,13 +11,13 @@ app.use(cors());
 
 const posts: Post[] = [];
 
-app.get("/posts", (req, res) => {
+app.get("/posts", (_, res) => {
   res.send(posts);
 });
 
-app.post("/posts", async (req, res) => {
+app.post("/posts", async (req, res ) => {
   const id = randomBytes(4).toString("hex");
-  const post: Post = req.body;
+  const post = req.body;
   post.id = id;
 
   posts.push(post);

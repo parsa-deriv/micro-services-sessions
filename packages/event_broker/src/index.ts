@@ -1,7 +1,7 @@
-import express from 'express';
+import * as express from 'express';
 import axios from 'axios';
 
-import { Dict, EventModel } from './models/event_model';
+import { EventModel } from './models/event_model';
 
 const app = express();
 app.use(express.json());
